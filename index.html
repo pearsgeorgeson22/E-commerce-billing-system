@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GEOcart - Smart Electronics Store</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header / Branding -->
+    <header class="gc-header">
+      <div class="gc-container gc-header-inner">
+        <div class="gc-logo">
+          <span class="gc-logo-mark">GEO</span><span class="gc-logo-text">cart</span>
+        </div>
+        <nav class="gc-nav">
+          <a href="#products">Products</a>
+          <a href="#cart">Cart</a>
+          <a href="#address">Address</a>
+          <a href="#payment">Payment</a>
+          <a href="#monthly-sales">Monthly Sales</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero / Intro -->
+      <section class="gc-hero">
+        <div class="gc-container gc-hero-inner">
+          <div class="gc-hero-text">
+            <h1>Welcome to GEOcart</h1>
+            <p>Your one-stop shop for mobiles, laptops, and electronic gadgets.</p>
+            <a href="#products" class="gc-btn gc-btn-primary">Start Shopping</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Menu & Listing -->
+      <section id="products" class="gc-section">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Products</h2>
+            <p>Browse our latest mobiles, laptops, and electronics.</p>
+          </header>
+
+          <div class="gc-category-filters">
+            <button class="gc-chip gc-chip-active" data-category="all">All</button>
+            <button class="gc-chip" data-category="mobile">Mobiles</button>
+            <button class="gc-chip" data-category="laptop">Laptops</button>
+            <button class="gc-chip" data-category="electronics">Electronics</button>
+          </div>
+
+          <div id="product-grid" class="gc-product-grid">
+            <!-- Products rendered by script.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Cart Section -->
+      <section id="cart" class="gc-section gc-section-alt">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Your Cart</h2>
+            <p>Review items before you proceed to address and payment.</p>
+          </header>
+
+          <div class="gc-card">
+            <div class="gc-cart-table-wrapper">
+              <table class="gc-table" aria-label="Shopping cart">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="cart-body">
+                  <!-- Cart rows rendered by script.js -->
+                </tbody>
+              </table>
+              <p id="cart-empty-message" class="gc-empty-state">
+                Your cart is empty. Add some products to continue.
+              </p>
+            </div>
+
+            <div class="gc-cart-summary">
+              <div class="gc-cart-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">₹0.00</span>
+              </div>
+              <div class="gc-cart-row">
+                <span>Tax (5%)</span>
+                <span id="cart-tax">₹0.00</span>
+              </div>
+              <div class="gc-cart-row gc-cart-total-row">
+                <span>Grand Total</span>
+                <span id="cart-total">₹0.00</span>
+              </div>
+              <button id="btn-to-address" class="gc-btn gc-btn-primary" type="button">
+                Proceed to Address
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Address Section -->
+      <section id="address" class="gc-section">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Shipping Address</h2>
+            <p>Enter your delivery details.</p>
+          </header>
+
+          <div class="gc-card">
+            <form id="address-form" class="gc-form">
+              <div class="gc-form-row">
+                <div class="gc-form-field">
+                  <label for="cust-name">Full Name *</label>
+                  <input id="cust-name" name="cust-name" type="text" required />
+                </div>
+                <div class="gc-form-field">
+                  <label for="cust-phone">Phone *</label>
+                  <input
+                    id="cust-phone"
+                    name="cust-phone"
+                    type="tel"
+                
+                    placeholder="10-digit number"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="gc-form-row">
+                <div class="gc-form-field">
+                  <label for="cust-email">Email</label>
+                  <input id="cust-email" name="cust-email" type="email" />
+                </div>
+              </div>
+
+              <div class="gc-form-row">
+                <div class="gc-form-field">
+                  <label for="addr-line1">Address Line 1 *</label>
+                  <input id="addr-line1" name="addr-line1" type="text" required />
+                </div>
+              </div>
+
+              <div class="gc-form-row">
+                <div class="gc-form-field">
+                  <label for="addr-line2">Address Line 2</label>
+                  <input id="addr-line2" name="addr-line2" type="text" />
+                </div>
+              </div>
+
+              <div class="gc-form-row">
+                <div class="gc-form-field">
+                  <label for="addr-city">City *</label>
+                  <input id="addr-city" name="addr-city" type="text" required />
+                </div>
+                <div class="gc-form-field">
+                  <label for="addr-state">State *</label>
+                  <input id="addr-state" name="addr-state" type="text" required />
+                </div>
+                <div class="gc-form-field">
+                  <label for="addr-pin">Pincode *</label>
+                  <input
+                    id="addr-pin"
+                    name="addr-pin"
+                    type="text"
+                    
+                    placeholder="6-digit PIN"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="gc-form-actions">
+                <button type="submit" class="gc-btn gc-btn-primary">
+                  Save Address &amp; Continue to Payment
+                </button>
+                <p id="address-status" class="gc-status-text"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Payment Section -->
+      <section id="payment" class="gc-section gc-section-alt">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Payment</h2>
+            <p>Scan the QR code or use the UPI ID to complete a mock payment.</p>
+          </header>
+
+          <div class="gc-card gc-payment-layout">
+            <div class="gc-payment-details">
+              <p class="gc-label">Payable Amount</p>
+              <p id="payment-amount" class="gc-payment-amount">₹0.00</p>
+              <p class="gc-label">UPI ID</p>
+              <p class="gc-upi-id">georgesonpears3620@okicici</p>
+              <p class="gc-note">
+                Note: its a real transaction.
+              </p>
+              <button id="btn-pay-now" class="gc-btn gc-btn-primary" type="button">
+                Show QR
+              </button>
+              <button
+                id="btn-confirm-payment"
+                class="gc-btn gc-btn-secondary gc-hidden"
+                type="button"
+              >
+                Payment Done (Show Bill)
+              </button>
+              <p id="payment-status" class="gc-status-text"></p>
+            </div>
+
+            <div class="gc-payment-qr gc-hidden">
+              <div class="gc-qr-box">
+                <img
+                  src="GooglePay_QR.png"
+                  alt="UPI QR Code"
+                  class="gc-qr-code"
+                  loading="lazy"
+                />
+              </div>
+               <p class="gc-qr-caption">Scan this QR with any UPI app to pay.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bill / Order Summary Section -->
+      <section id="bill" class="gc-section">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Order Bill</h2>
+            <p>View and print your order summary.</p>
+          </header>
+
+          <div id="bill-card" class="gc-card gc-bill-card">
+            <header class="gc-bill-header">
+              <div>
+                <h3>GEOcart</h3>
+                <p>Smart Electronics Store</p>
+              </div>
+              <div class="gc-bill-meta">
+                <p><span>Bill No:</span> <span id="bill-number">-</span></p>
+                <p><span>Date:</span> <span id="bill-date">-</span></p>
+              </div>
+            </header>
+
+            <section class="gc-bill-section">
+              <h4>Billing To</h4>
+              <p id="bill-customer-name">-</p>
+              <p id="bill-customer-address">-</p>
+              <p id="bill-customer-contact">-</p>
+            </section>
+
+            <section class="gc-bill-section">
+              <h4>Items</h4>
+              <table class="gc-table gc-bill-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody id="bill-items">
+                  <!-- Bill items inserted by script.js -->
+                </tbody>
+              </table>
+            </section>
+
+            <section class="gc-bill-section gc-bill-totals">
+              <div class="gc-cart-row">
+                <span>Subtotal</span>
+                <span id="bill-subtotal">₹0.00</span>
+              </div>
+              <div class="gc-cart-row">
+                <span>Tax (5%)</span>
+                <span id="bill-tax">₹0.00</span>
+              </div>
+              <div class="gc-cart-row gc-cart-total-row">
+                <span>Grand Total</span>
+                <span id="bill-total">₹0.00</span>
+              </div>
+            </section>
+
+            <footer class="gc-bill-footer">
+              <p>Thank you for shopping with GEOcart!</p>
+            </footer>
+          </div>
+
+          <div class="gc-bill-actions">
+            <button id="btn-print-bill" class="gc-btn gc-btn-secondary" type="button">
+              Print Bill
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Monthly Sales (Static Information) -->
+      <section id="monthly-sales" class="gc-section gc-section-alt">
+        <div class="gc-container">
+          <header class="gc-section-header">
+            <h2>Monthly Sales Snapshot</h2>
+            
+          </header>
+
+          <div class="gc-monthly-grid">
+            <div class="gc-card gc-month-card">
+              <h3>Q1 (Jan - Mar)</h3>
+              <ul>
+                <li><span>Mobiles</span><span>₹3,20,000</span></li>
+                <li><span>Laptops</span><span>₹2,40,000</span></li>
+                <li><span>Electronics</span><span>₹1,10,000</span></li>
+              </ul>
+            </div>
+            <div class="gc-card gc-month-card">
+              <h3>Q2 (Apr - Jun)</h3>
+              <ul>
+                <li><span>Mobiles</span><span>₹3,60,000</span></li>
+                <li><span>Laptops</span><span>₹2,80,000</span></li>
+                <li><span>Electronics</span><span>₹1,40,000</span></li>
+              </ul>
+            </div>
+            <div class="gc-card gc-month-card">
+              <h3>Q3 (Jul - Sep)</h3>
+              <ul>
+                <li><span>Mobiles</span><span>₹3,90,000</span></li>
+                <li><span>Laptops</span><span>₹3,10,000</span></li>
+                <li><span>Electronics</span><span>₹1,70,000</span></li>
+              </ul>
+            </div>
+            <div class="gc-card gc-month-card">
+              <h3>Q4 (Oct - Dec)</h3>
+              <ul>
+                <li><span>Mobiles</span><span>₹4,10,000</span></li>
+                <li><span>Laptops</span><span>₹3,40,000</span></li>
+                <li><span>Electronics</span><span>₹1,90,000</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="gc-footer">
+      <div class="gc-container">
+        <p>© <span id="footer-year"></span> GEOcart. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+
